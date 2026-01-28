@@ -1,5 +1,6 @@
 from ..models import Matches
 from json import load, dump
+import os
 
 
 '''
@@ -30,7 +31,7 @@ def  transformplayers():
         id = match.match_id
         print(f'Running for match id {id}')
 
-        file = open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{id}.json')
+        file = open(f'data/json/{id}.json')
         dic = load(file)
         info = dic['info']
 
@@ -134,9 +135,9 @@ def  transformplayers():
                                 'matches': [id]
                             }
 
-    with open('E:\\Projects\\cricketWithChetan\\data\\json\\batsmen.json', 'w') as file:
+    with open('data/json/batsmen.json', 'w') as file:
         dump(batter_players ,file)
-    with open('E:\\Projects\\cricketWithChetan\\data\\json\\bowlers.json', 'w') as file:
+    with open('data/json/bowlers.json', 'w') as file:
         dump(bowling_players, file)
 
     print('Completed without error!')
@@ -159,7 +160,10 @@ def transformformatplayers(format):
         id = match.match_id
         print(f'Running for match id {id}')
 
-        file = open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{id}.json')
+        try:
+            file = open(f'data/json/{id}.json')
+        except:
+            continue
         dic = load(file)
         info = dic['info']
 
@@ -262,12 +266,14 @@ def transformformatplayers(format):
                                 'runs_given': runs,
                                 'matches': [id]
                             }
+    os.makedirs('data/json', exist_ok=True)
 
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{format.lower()}_batsmen.json', 'w') as file:
+    with open(f'data/json/{format.lower()}_batsmen.json', 'w') as file:
         dump(batter_players ,file)
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{format.lower()}_bowler.json', 'w') as file:
+    with open(f'data/json/{format.lower()}_bowler.json', 'w') as file:
         dump(bowling_players, file)
 
+    print(f'Found {len(batter_players)} batsmen and {len(bowling_players)} bowlers!')
     print('Completed without error!')
 
 
@@ -286,7 +292,12 @@ def extract_teams():
         id = match.match_id
         print(f'Running for match id {id}')
 
-        file = open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{id}.json')
+        try:
+            file = open(f'data/json/{id}.json')
+        except:
+            print(f'File for match id {id} not found!')
+            continue
+
         dic = load(file)
         info = dic['info']['players']
         teams = list(info.keys())
@@ -303,7 +314,9 @@ def extract_teams():
             if player not in players[teams[1]]:
                 players[teams[1]].append(player)
 
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\players.json', 'w') as file:
+    os.makedirs('data/json/', exist_ok=True)
+
+    with open(f'data/json/players.json', 'w') as file:
         dump(players, file)
 
     return players

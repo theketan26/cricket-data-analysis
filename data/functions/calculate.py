@@ -21,7 +21,7 @@ def find_sr(player, type):
     print('Starting to find strike-rate!')
 
     players = {}
-    with open('E:\\Projects\\cricketWithChetan\\data\\json\\batsmen.json', 'r') as file:
+    with open('data/json/batsmen.json', 'r') as file:
         players = load(file)
 
     player = players[player]
@@ -31,7 +31,7 @@ def find_sr(player, type):
 
 
 def performance_batsman(teams, player_name, type, oppositions):
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{type.lower()}_batsmen.json') as file:
+    with open(f'data/json/{type.lower()}_batsmen.json') as file:
         player_data = (load(file))[player_name]
         matches = (player_data['matches'])[::-1]
 
@@ -42,7 +42,7 @@ def performance_batsman(teams, player_name, type, oppositions):
     i = 10
 
     for match in matches:
-        with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{match}.json') as file:
+        with open(f'data/json/{match}.json') as file:
             data = load(file)
 
         runs, balls = 0, 0
@@ -85,7 +85,7 @@ def performance_batsman(teams, player_name, type, oppositions):
 
 
 def performance_bowler(teams, player_name, type, oppositions):
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{type.lower()}_bowler.json') as file:
+    with open(f'data/json/{type.lower()}_bowler.json') as file:
         player_data = (load(file))[player_name]
         matches = (player_data['matches'])[::-1]
 
@@ -98,7 +98,7 @@ def performance_bowler(teams, player_name, type, oppositions):
     for match in matches:
 
 
-        with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{match}.json') as file:
+        with open(f'data/json/{match}.json') as file:
             data = load(file)
 
         runs, wicket = 0, 0

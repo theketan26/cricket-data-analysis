@@ -3,3 +3,4 @@
 .idea
 
 data/json/
+__pycache__/

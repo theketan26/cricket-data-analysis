@@ -2,8 +2,15 @@ from django import forms
 
 
 class StateForm(forms.Form):
-    player = forms.CharField(label='Player', max_length=100, widget=forms.TextInput(attrs={'id':'playertags'}))
-    role = forms.CharField(label='Role', max_length=100, widget=forms.TextInput(attrs={'id':'roletags'}))
+    def __init__(self, *args, **kwargs):
+        player_choices = kwargs.pop('player_choices', [])
+        role_choices = kwargs.pop('role_choices', [])
+        super().__init__(*args, **kwargs)
+        self.fields['player'].choices = player_choices
+        self.fields['role'].choices = role_choices
+
+    player = forms.ChoiceField(label='Player', widget=forms.Select(attrs={'id':'playertags'}))
+    role = forms.ChoiceField(label='Role', widget=forms.Select(attrs={'id':'roletags'}))
 
 
 class TeamForm(forms.Form):

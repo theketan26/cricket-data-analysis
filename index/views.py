@@ -11,7 +11,7 @@ def home(request):
     return render(request, "index.html")
 
 
-def states(request):
+def stats(request):
     form = StateForm()
 
     url = "http://localhost:8000/data/getTeams/"
@@ -40,6 +40,12 @@ def states(request):
 
     data = json.loads(response.text)
     players = data['batsman'] + data['bowler']
+    roles = ['batting', 'bowling', 'allrounder']
+
+    player_choices = [(p, p) for p in players]
+    role_choices = [(r, r) for r in roles]
+
+    form = StateForm(player_choices=player_choices, role_choices=role_choices)
 
     context = {
         'types': ['ODI', 'T20', 'Test'],
@@ -54,7 +60,25 @@ def states(request):
 
 def state_result(request):
     try:
-        form = StateForm(request.POST)
+        # Fetch players and roles for form choices
+        url = "http://localhost:8000/data/getPlayers/"
+        payload = json.dumps({
+            "team": "All",
+            "type": "ODI"
+        })
+        headers = {
+          'Content-Type': 'application/json'
+        }
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        data = json.loads(response.text)
+        players = data['batsman'] + data['bowler']
+        roles = ['batting', 'bowling', 'allrounder']
+
+        player_choices = [(p, p) for p in players]
+        role_choices = [(r, r) for r in roles]
+
+        form = StateForm(request.POST, player_choices=player_choices, role_choices=role_choices)
 
         if form.is_valid():
             player = form.cleaned_data['player']

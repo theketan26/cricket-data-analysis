@@ -12,7 +12,7 @@ This function update match data from readme.txt file to django sqlite databse
 
 '''
 def updateMatches():
-    file = open('E:\\Projects\\cricketWithChetan\\data\\json\\README.txt', 'r')
+    file = open('../data/json/README.txt', 'r')
 
     lines = file.readlines()
     size, n = len(lines), 1

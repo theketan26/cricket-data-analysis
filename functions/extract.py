@@ -5,14 +5,14 @@ from .calculate import performance_batsman, performance_bowler
 
 
 def teams(type):
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\players.json', 'r') as file:
+    with open(f'../data/json/players.json', 'r') as file:
         teams = load(file)
 
     return list(teams.keys())
 
 
 def players(team, type):
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\players.json', 'r') as file:
+    with open(f'../data/json/players.json', 'r') as file:
         if team != 'All':
             players = list(load(file)[team])
         else:
@@ -21,9 +21,9 @@ def players(team, type):
             for team in data.keys():
                 players += data[team]
 
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{type.lower()}_batsmen.json', 'r') as file:
+    with open(f'data/json/{type.lower()}_batsmen.json', 'r') as file:
         batsman = filter(lambda x: True if x in players else False, list(load(file).keys()))
-    with open(f'E:\\Projects\\cricketWithChetan\\data\\json\\{type.lower()}_bowler.json', 'r') as file:
+    with open(f'data/json/{type.lower()}_bowler.json', 'r') as file:
         bowler = filter(lambda x: True if x in players else False, list(load(file).keys()))
 
     response = {
