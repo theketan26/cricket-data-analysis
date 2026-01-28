@@ -26,9 +26,9 @@ SECRET_KEY = 'django-insecure-p1gepgpqimjb#p(o(d4^mavo+z0&e=l77sl=^&(#2d)tf7cfj5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cricket-data-analysis.onrender.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'https://127.0.0.1:8000', 'https://vigilant-invention-r55w55jx6qg2xw74-8000.app.github.dev/']
+CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'https://127.0.0.1:8000', 'https://vigilant-invention-r55w55jx6qg2xw74-8000.app.github.dev/', 'cricket-data-analysis.onrender.com']
 
 
 # Application definition

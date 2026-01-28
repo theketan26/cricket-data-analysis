@@ -1,4 +1,4 @@
-# CricketWithChetan
+# Cricket Data Analysis
 
 install required packages
 
