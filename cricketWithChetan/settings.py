@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cricket-data-analysis.onrender.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'https://127.0.0.1:8000', 'https://vigilant-invention-r55w55jx6qg2xw74-8000.app.github.dev/', 'cricket-data-analysis.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'https://127.0.0.1:8000', 'https://vigilant-invention-r55w55jx6qg2xw74-8000.app.github.dev/', 'https://cricket-data-analysis.onrender.com']
 
 
 # Application definition
